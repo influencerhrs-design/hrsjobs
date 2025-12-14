@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Artisan Workshop - Bespoke Indian Craftsmanship</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for aesthetic and functional icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom Styles for smooth scroll and Inter font */
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+        }
+        /* Mobile-first styling for the floating buttons */
+        .floating-button-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            /* Ensures they are hidden on larger screens */
+            display: flex;
+        }
+        @media (min-width: 640px) {
+            .floating-button-container {
+                display: none;
+            }
+        }
+
+        /* --- Full Screen Overlay Styles --- */
+        .overlay {
+            height: 0%; /* Start closed */
+            width: 100%;
+            position: fixed;
+            z-index: 100; /* Above everything else */
+            top: 0;
+            left: 0;
+            background-color: #1e3799; /* Deep Blue Accent */
+            overflow-y: hidden;
+            transition: 0.5s; /* Slide down/up transition */
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 15%; /* Center the content vertically */
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .overlay a {
+            padding: 12px;
+            text-decoration: none;
+            font-size: 32px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 0 auto 10px;
+            max-width: 300px;
+        }
+
+        .overlay a:hover, .overlay a:focus {
+            color: #f9ca24; /* Secondary Yellow on hover */
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+            cursor: pointer;
+            color: white;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        
+        @media screen and (max-height: 450px) {
+            .overlay a {font-size: 20px}
+            .overlay-content {top: 5%;}
+        }
+        /* --- End Overlay Styles --- */
+    </style>
+    <script>
+        // Tailwind configuration for custom colors and font
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4a69bd', /* Soft Blue */
+                        'secondary': '#f9ca24', /* Bright Yellow */
+                        'accent': '#1e3799', /* Deep Blue */
+                        'bg-light': '#f5f6fa',
+                    },
+                }
+            }
+        }
+
+        // --- Navigation Overlay Functions ---
+        function openNav() {
+            document.getElementById("myNav").style.height = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.height = "0%";
+        }
+        // --- End Navigation Overlay Functions ---
+    </script>
+</head>
+<body class="bg-bg-light text-gray-800">
+
+    <!-- FULL SCREEN OVERLAY NAVIGATION -->
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        
+        <!-- Overlay Content with User's Requested Links -->
+        <div class="overlay-content">
+            <a href="#about" onclick="closeNav()">About</a>
+            <a href="#services" onclick="closeNav()">Services</a>
+            <a href="#gallery" onclick="closeNav()">Clients</a>
+            <a href="#contact" onclick="closeNav()">Contact</a>
+        </div>
+    </div>
+    <!-- END FULL SCREEN OVERLAY NAVIGATION -->
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 bg-white shadow-lg z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center max-w-4xl">
+            <!-- Logo and Business Name -->
+            <div class="flex items-center space-x-3">
+                <!-- Placeholder Logo (Inline SVG for fast load) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                <h1 class="text-xl font-bold text-accent">The Artisan Workshop</h1>
+            </div>
+            <!-- Navigation Toggle Button (Hamburger) -->
+            <button class="text-accent hover:text-primary transition p-2 rounded-lg" onclick="openNav()" aria-label="Open Navigation Menu">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl pb-32 sm:pb-8">
+
+        <!-- Hero Section -->
+        <section class="mb-12 text-center pt-8">
+            <div class="p-6 bg-primary rounded-xl shadow-xl text-white">
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-2">Crafting India's Finest Spaces</h2>
+                <p class="text-lg opacity-90">Bespoke furniture and interior decor, handcrafted with passion in Bengaluru.</p>
+                <a href="#contact" class="inline-block mt-6 px-8 py-3 bg-secondary text-gray-900 font-bold rounded-full shadow-lg hover:bg-yellow-300 transition transform hover:scale-105">
+                    Get a Free Consultation
+                </a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="mb-16 pt-8">
+            <h2 class="text-3xl font-bold text-accent border-b-4 border-secondary pb-2 mb-6">Our Story & Vision</h2>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-semibold text-primary mb-3">A Legacy of Craftsmanship</h3>
+                <p class="mb-4 text-gray-700">
+                    The Artisan Workshop was born from a family tradition of woodworking excellence. Starting with a small shed and a commitment to quality over everything, we've grown into a studio dedicated to preserving and innovating traditional Indian craft. Every piece we create tells a story of sustainable materials and meticulous detail.
+                </p>
+                <p class="mb-4 text-gray-700 font-medium italic">
+                    Our Vision: To be the trusted name for bespoke, enduring, and culturally rich interior solutions across India.
+                </p>
+                <div class="flex items-center text-sm mt-4 text-gray-500">
+                    <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
+                    Current Location: Jayanagar, Bengaluru
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="mb-16 pt-8">
+            <h2 class="text-3xl font-bold text-accent border-b-4 border-secondary pb-2 mb-6">Key Offerings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Service 1: Custom Furniture -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-primary hover:shadow-xl transition">
+                    <i data-lucide="chair" class="w-8 h-8 text-primary mb-3"></i>
+                    <h3 class="text-lg font-semibold mb-2">Bespoke Furniture</h3>
+                    <p class="text-sm text-gray-600">Custom design and construction of tables, sofas, and cabinetry using premium, locally sourced woods.</p>
+                </div>
+                <!-- Service 2: Interior Styling -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-primary hover:shadow-xl transition">
+                    <i data-lucide="layout-grid" class="w-8 h-8 text-primary mb-3"></i>
+                    <h3 class="text-lg font-semibold mb-2">Interior Design & Styling</h3>
+                    <p class="text-sm text-gray-600">Full-service consultation and execution for homes, offices, and commercial spaces.</p>
+                </div>
+                <!-- Service 3: Restoration -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-primary hover:shadow-xl transition">
+                    <i data-lucide="layers" class="w-8 h-8 text-primary mb-3"></i>
+                    <h3 class="text-lg font-semibold mb-2">Antique Restoration</h3>
+                    <p class="text-sm text-gray-600">Expert repair and restoration of old, treasured wooden furniture and heirlooms.</p>
+                </div>
+                <!-- Service 4: Modular Units -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-primary hover:shadow-xl transition md:col-span-1">
+                    <i data-lucide="hard-hat" class="w-8 h-8 text-primary mb-3"></i>
+                    <h3 class="text-lg font-semibold mb-2">Modular Kitchens & Wardrobes</h3>
+                    <p class="text-sm text-gray-600">Modern, functional modular solutions tailored to Indian home layouts and aesthetics.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="mb-16 pt-8">
+            <h2 class="text-3xl font-bold text-accent border-b-4 border-secondary pb-2 mb-6">Our Portfolio</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <!-- Image 1: Bespoke Table -->
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://placehold.co/400x300/4a69bd/ffffff?text=Bespoke+Table"
+                        alt="Handcrafted bespoke dining table"
+                        class="w-full h-auto object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 2: Kitchen Interior -->
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://placehold.co/400x300/1e3799/ffffff?text=Modern+Kitchen"
+                        alt="Modern modular kitchen interior"
+                        class="w-full h-auto object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 3: Sofa Set -->
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://placehold.co/400x300/f9ca24/333333?text=Handcrafted+Sofa"
+                        alt="Luxurious handcrafted sofa set"
+                        class="w-full h-auto object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 4: Wardrobe -->
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://placehold.co/400x300/4a69bd/ffffff?text=Custom+Wardrobe"
+                        alt="Custom wooden wardrobe"
+                        class="w-full h-auto object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 5: Decor Items -->
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://placehold.co/400x300/1e3799/ffffff?text=Decor+Pieces"
+                        alt="Wooden decor and accessories"
+                        class="w-full h-auto object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 6: Finish Sample -->
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://placehold.co/400x300/f9ca24/333333?text=Finishing+Sample"
+                        alt="Close up of wood finishing sample"
+                        class="w-full h-auto object-cover transform hover:scale-105 transition duration-300">
+                </div>
+            </div>
+            <p class="text-center text-sm text-gray-500 mt-4 italic">See more of our work upon request!</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="pt-8">
+            <h2 class="text-3xl font-bold text-accent border-b-4 border-secondary pb-2 mb-6">Get In Touch</h2>
+            <div class="bg-white p-6 rounded-xl shadow-lg grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Contact Details -->
+                <div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Direct Communication</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <i data-lucide="phone" class="w-5 h-5 text-accent mr-3 flex-shrink-0"></i>
+                            <span class="font-medium">Call Us: </span>
+                            <!-- UPDATED PHONE NUMBER for Call Now -->
+                            <a href="tel:8987877" class="ml-2 text-primary hover:underline">+91 89878 77</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="mail" class="w-5 h-5 text-accent mr-3 flex-shrink-0"></i>
+                            <span class="font-medium">Email: </span>
+                            <a href="mailto:info@artisanworkshop.in" class="ml-2 text-primary hover:underline">info@artisanworkshop.in</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="whatsapp" class="w-5 h-5 text-accent mr-3 flex-shrink-0"></i>
+                            <span class="font-medium">WhatsApp: </span>
+                            <!-- WhatsApp chat link (using original number) -->
+                            <a href="https://wa.me/919876543210?text=Hello,%20I'm%20interested%20in%20your%20custom%20craftsmanship." target="_blank" class="ml-2 text-primary hover:underline">Chat Now (Fastest response)</a>
+                        </li>
+                        <!-- HR Support Channel Link (Existing) -->
+                        <li class="flex items-center">
+                            <i data-lucide="users" class="w-5 h-5 text-accent mr-3 flex-shrink-0"></i>
+                            <span class="font-medium">HR Support: </span>
+                            <a href="https://whatsapp.com/channel/0029VbCo9qP89inbptasmC20" target="_blank" class="ml-2 text-primary hover:underline">Follow Channel (HR updates)</a>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-primary mt-8 mb-4">Visit Our Studio</h3>
+                    <p class="text-gray-700">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-accent mr-2 inline-block"></i>
+                        #15, 4th Main Road, Jayanagar 3rd Block, <br class="sm:hidden">
+                        Bengaluru, Karnataka - 560011
+                    </p>
+                    <p class="text-sm text-gray-500 mt-2 italic">Studio visits by appointment only.</p>
+                </div>
+
+                <!-- Call to Action Card -->
+                <div class="bg-bg-light p-6 rounded-lg border-2 border-dashed border-secondary flex flex-col justify-center items-center text-center">
+                    <i data-lucide="message-square" class="w-10 h-10 text-primary mb-3"></i>
+                    <h4 class="text-lg font-bold mb-2">Ready to Start Your Project?</h4>
+                    <p class="text-sm text-gray-600 mb-4">The easiest way to connect is via WhatsApp. Send us a message and we'll reply within the hour.</p>
+                    <a href="https://wa.me/919876543210?text=Hello,%20I'm%20interested%20in%20your%20custom%20craftsmanship." target="_blank" class="inline-flex items-center px-6 py-3 bg-green-500 text-white font-bold rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-105">
+                        <i data-lucide="whatsapp" class="w-5 h-5 mr-2"></i>
+                        Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- NEW SOCIAL LINKS SECTION (Inspired by User Image) -->
+    <section class="bg-white py-16 text-center shadow-inner">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-8">Like what you're seeing? Follow us for more.</h2>
+            <div class="flex justify-center space-x-6">
+
+                <!-- WhatsApp Channel (Using provided link) -->
+                <a href="https://whatsapp.com/channel/0029VbCo9qP89inbptasmC20" target="_blank" class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition duration-300 group" aria-label="Follow us on WhatsApp Channel">
+                    <!-- Using message-square as a proxy for the WhatsApp icon in Lucide -->
+                    <i data-lucide="message-square" class="w-7 h-7 text-white group-hover:rotate-6 transition"></i>
+                </a>
+
+                <!-- Facebook Placeholder -->
+                <a href="#" target="_blank" class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition duration-300" aria-label="Follow us on Facebook">
+                    <i data-lucide="facebook" class="w-7 h-7 text-white"></i>
+                </a>
+
+                <!-- Instagram Placeholder -->
+                <a href="#" target="_blank" class="w-14 h-14 bg-pink-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition duration-300" aria-label="Follow us on Instagram">
+                    <i data-lucide="instagram" class="w-7 h-7 text-white"></i>
+                </a>
+
+                <!-- LinkedIn Placeholder -->
+                <a href="#" target="_blank" class="w-14 h-14 bg-blue-700 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition duration-300" aria-label="Follow us on LinkedIn">
+                    <i data-lucide="linkedin" class="w-7 h-7 text-white"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Floating Mobile Buttons (Only visible on small screens) -->
+    <div class="floating-button-container sm:hidden bg-white border-t border-gray-200 shadow-2xl p-3">
+        <!-- UPDATED PHONE NUMBER for Call Now button -->
+        <a href="tel:8987877" class="flex-1 mr-2 p-3 bg-primary text-white font-bold rounded-full text-center flex items-center justify-center space-x-2 shadow-lg transition transform hover:scale-[1.02]">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+            <span>Call Now</span>
+        </a>
+        <a href="https://wa.me/919876543210?text=Hello,%20I'm%20interested%20in%20your%20custom%20craftsmanship." target="_blank" class="flex-1 p-3 bg-green-500 text-white font-bold rounded-full text-center flex items-center justify-center space-x-2 shadow-lg transition transform hover:scale-[1.02]">
+            <i data-lucide="whatsapp" class="w-5 h-5"></i>
+            <span>WhatsApp Chat</span>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-accent text-white p-6 mt-12">
+        <div class="container mx-auto max-w-4xl text-center text-sm">
+            &copy; 2025 The Artisan Workshop. Handcrafted in India.
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        // Calls the Lucide function to replace data-lucide attributes with SVG icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+
